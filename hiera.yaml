@@ -1,0 +1,20 @@
+---
+# Due to a problem in puppet/hiera, it is unable to dynamically read hiera.yaml
+# from the environments so it must exist at /etc/puppet/hiera.yaml instead of
+# /etc/puppet/environments/$environment/hiera.yaml.  This file is only here to
+# help rspec-puppet, it is not used in the actual puppet deployment
+
+:backends:
+  - yaml
+  - eyaml
+
+:hierarchy:
+  - common
+
+# Point to relative paths for the validator
+:yaml:
+  :datadir: ./hieradata
+:eyaml:
+  :datadir: ./hieradata
+  :pkcs7_private_key: /etc/puppet/keys/private_key.pkcs7.pem
+  :pkcs7_public_key: /etc/puppet/keys/public_key.pkcs7.pem
